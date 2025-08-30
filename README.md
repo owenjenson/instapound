@@ -24,11 +24,13 @@ Instapound is a social media web application inspired by platforms like Instagra
 Here are some screenshots of Instapound in action:
 
 <p align="center">
-  <img src="screenshots/feed.png" alt="Feed screenshot" width="600" />
+  <img src="assets/home_page.png" alt="Feed screenshot" width="600" />
   <br>
-  <img src="screenshots/profile.png" alt="Profile screenshot" width="600" />
+  <img src="assets/profile_page.png" alt="Profile screenshot" width="600" />
   <br>
-  <img src="screenshots/post-details.png" alt="Post details screenshot" width="600" />
+  <img src="assets/chat.png" alt="Chat" width="600" />
+  <br>
+  <img src="assets/login_page.png" alt="Chat" width="600" />
 </p>
 
 ## Getting Started
