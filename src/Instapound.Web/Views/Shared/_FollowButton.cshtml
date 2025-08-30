@@ -1,0 +1,7 @@
+﻿@model Instapound.Web.Models.FollowButtonViewModel
+
+<button class="btn flex gap-2 text-sm ajax-btn"
+        data-id="@Model.Id"
+        data-url="/Profile/Follow">
+    @await Html.PartialAsync("_FollowButtonContent", new FollowButtonContentViewModel(Model.CurrentUserFollows))
+</button>

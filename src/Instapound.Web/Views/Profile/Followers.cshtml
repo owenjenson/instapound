@@ -1,0 +1,32 @@
+﻿@model Instapound.Web.Models.ProfileUsersViewModel
+
+@{
+    ViewData["Title"] = $"{Model.Info.Name}'s followers | Instapound";
+}
+
+@await Html.PartialAsync("_ProfileHeader", Model.Info)
+
+<h3 class="mb-6 font-semibold text-xl">
+    @{
+        var title = $"{Model.Info.Name}'s followers";
+        <text>@title</text>
+    }
+</h3>
+
+@if (Model.Users.Count > 0)
+{
+    <ul class="flex flex-col gap-5">
+        @foreach (var user in Model.Users)
+        {
+            <li>
+                @await Html.PartialAsync("_UserListItem", user)
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <div class="flex-1 grid place-content-center max-h-96">
+        <span class="text-on-surface-muted">No followers</span>
+    </div>
+}

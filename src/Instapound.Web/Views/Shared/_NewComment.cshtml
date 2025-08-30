@@ -1,0 +1,14 @@
+﻿@model Instapound.Web.Models.NewCommentViewModel
+
+<form asp-controller="Posts" asp-action="Comment" method="post">
+    <div class="flex flex-col">
+        <input asp-for="Text" placeholder="Comment this post..." class="input text-wrap" />
+        <span asp-validation-for="Text" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="PostId" />
+
+    <div class="flex gap-3 mt-3">
+        <button class="btn btn-primary" type="submit">Comment</button>
+    </div>
+</form>

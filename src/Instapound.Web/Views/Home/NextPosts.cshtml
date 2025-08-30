@@ -1,0 +1,8 @@
+﻿@model List<PostViewModel>
+
+@foreach (var post in Model)
+{
+    <li>
+        @await Html.PartialAsync("_PostListItem", post)
+    </li>
+}

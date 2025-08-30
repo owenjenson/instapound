@@ -1,0 +1,57 @@
+﻿@model Instapound.Web.Models.EditPostViewModel
+
+@{
+    ViewData["Title"] = "Edit post | Instapound";
+}
+
+<h2 class="text-3xl font-semibold mb-6">Edit post</h2>
+
+<form class="flex flex-col gap-4 w-full" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="flex flex-col">
+        <label asp-for="Text" class="mb-2"></label>
+        <textarea asp-for="Text" class="input"></textarea>
+        <span asp-validation-for="Text" class="text-danger"></span>
+    </div>
+
+    <div class="flex flex-col">
+        <label asp-for="NewImage" class="mb-2"></label>
+        @{
+            var imageDisplay = Model.CurrentImage is null ? "none" : "block";
+        }
+
+        <img
+            id="image"
+            class="self-start border border-outline rounded-lg max-h-[36rem] object-contain bg-surface-container mb-3"
+            src="~/images/posts/@Model.CurrentImage"
+            style="display: @imageDisplay" />
+
+        <div class="flex gap-2">
+            <button
+                id="removeImageButton"
+                type="button"
+                class="btn"
+                style="display: @imageDisplay">
+                Remove
+            </button>
+            <input
+                id="newImageInput"
+                asp-for="NewImage"
+                class="rounded-lg text-on-surface-muted file:bg-primary file:text-on-primary file:rounded-lg file:py-0.5 file:mr-3"
+                type="file"
+                accept="image/*" />
+        </div>
+
+        <span asp-validation-for="NewImage" class="text-danger"></span>
+        <input id="changedImageInput" type="hidden" asp-for="ChangedImage" />
+    </div>
+
+    <button class="btn btn-primary mt-3" type="submit">Save</button>
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script src="~/js/uploadImage.js" asp-append-version="true"></script>
+}

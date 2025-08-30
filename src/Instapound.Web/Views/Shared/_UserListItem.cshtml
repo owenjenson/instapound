@@ -1,0 +1,38 @@
+﻿@model Instapound.Web.Models.ProfileInfoViewModel
+
+<article>
+    <a class="grid grid-rows-[auto_auto] grid-cols-[auto_1fr] gap-x-4 items-center group" asp-controller="Profile" asp-action="Index" asp-route-id="@Model.Id.ToString()">
+        @{
+            var avatar = Model.Avatar is null ?
+                "/images/avatars/default_avatar.png" :
+                $"/images/avatars/{Model.Avatar}";
+        }
+
+        <img class="cover aspect-square w-9 h-9 rounded-full p-0.5 border-2 border-primary"
+             src="@avatar"
+             loading="lazy" />
+
+        <div>
+            <div class="flex gap-2 items-center">
+                <h4 class="font-semibold text-lg mb-0 group-hover:underline">@Model.Name</h4>
+                <small class="text-on-surface-muted">@@@Model.UserName</small>
+            </div>
+
+            <div class="flex gap-4 text-sm text-on-surface-muted">
+                <span class="block">
+                    @Model.PostsCount posts
+                </span>
+                <span class="block">
+                    @Model.FollowersCount followers
+                </span>
+            </div>
+        </div>
+
+        @if (Model.Bio is not null)
+        {
+            <p class="col-start-2 mt-1 text-sm">
+                @Model.Bio
+            </p>
+        }
+    </a>
+</article>

@@ -1,0 +1,99 @@
+﻿@using Instapound.Data.Entities
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> userManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <script type="importmap"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Instapound.Web.styles.css" asp-append-version="true" />
+
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+
+@{
+    var isFullscreen = ViewData["IsFullscreen"] is true;
+    var bodyClass = isFullscreen ? "overflow-hidden max-h-[100dvh]" : "";
+    var mainClass = isFullscreen ? "overflow-hidden" : "py-4";
+}
+
+<body class="grid grid-rows-[auto_1fr_auto] min-h-svh bg-surface text-on-surface @bodyClass">
+    <header class="sticky top-0 z-10 max-w-screen-lg w-full mx-auto px-5 py-6 flex justify-between items-center bg-surface">
+        <a class="" asp-controller="Home" asp-action="Index">
+            <h1 class="sr-only">Instapound</h1>
+
+            <picture>
+                <source srcSet="~/images/logo_white.svg"
+                    media="(prefers-color-scheme: dark)" />
+                <img
+                    alt="Instapound"
+                     src="~/images/logo_black.svg"
+                    class="w-32" />
+            </picture>
+        </a>
+
+        <div
+            class="flex gap-3 items-center">
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                var user = await userManager.GetUserAsync(User);
+
+                if (user is not null)
+                {
+                    var avatar = user.Avatar is null ?
+                        "/images/avatars/default_avatar.png" :
+                        $"/images/avatars/{user.Avatar}";
+
+                    <a class="btn btn-icon"
+                       asp-controller="Posts"
+                       asp-action="Create"
+                       title="New post">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 lucide lucide-plus"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
+                    </a>
+
+                    <a class="btn btn-icon"
+                       asp-controller="Messages"
+                       asp-action="Index"
+                       title="Messages">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+                    </a>
+
+                    <a class="ml-2" asp-controller="Profile" asp-action="Index" asp-route-id="@user.Id.ToString()">
+                        <img class="cover aspect-square w-9 h-9 rounded-full p-0.5 border-2 border-primary" src="@avatar" />
+                    </a>
+                }
+            }
+        </div>
+    </header>
+
+    <main class="max-w-screen-lg w-full mx-auto px-5 flex flex-col @mainClass">
+        @RenderBody()
+    </main>
+
+    @if (!isFullscreen)
+    {
+        <footer class="">
+            <div class="max-w-screen-lg w-full mx-auto px-5 py-4 text-on-surface-muted text-sm">
+                &copy; 2024 – Instapound
+            </div>
+        </footer>
+    }
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/ajaxButtons.js" asp-append-version="true"></script>
+    <script src="~/js/confirmation.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

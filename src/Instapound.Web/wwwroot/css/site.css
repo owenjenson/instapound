@@ -1,0 +1,101 @@
+:root {
+    --primary-light: #dbdbdb;
+    --primary-light-dim: #adadad;
+    --primary-dark: #242424;
+    --primary-dark-dim: #454545;
+    --secondary-light: #22C1C3;
+    --secondary-dark: #22C1C3;
+    --primary: var(--primary-dark);
+    --primary-dim: var(--primary-dark-dim);
+    --on-primary: #ffffff;
+    --on-primary-dim: var(--on-primary);
+    --secondary: var(--secondary-dark);
+    --on-secondary: #ffffff;
+    --secondary-dim: #000;
+    --on-secondary-dim: #ffffff;
+    --surface: rgb(244, 247, 249);
+    --on-surface: #000;
+    --on-surface-muted: #6b7280;
+    --surface-dim: #e5e7eb;
+    --on-surface-dim: #000;
+    --on-surface-dim-muted: #6b7280;
+    --surface-container: #ffffff;
+    --on-surface-container: #000;
+    --on-surface-container-muted: #6b7280;
+    --surface-dim-container: #f3f4f6;
+    --on-surface-dim-container: #000;
+    --on-surface-dim-container-muted: #6b7280;
+    --outline: #d1d5db;
+    --outline-variant: #e5e7eb;
+    --success: #05a612;
+    --on-success: #ffffff;
+    --danger: #941010;
+    --on-danger: #ffffff;
+    --danger-dim: #730f0f;
+    --on-danger-dim: #ffffff;
+    --shade: rgba(0, 0, 0, 0.1);
+    --backdrop: rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary: var(--primary-light);
+        --primary-dim: var(--primary-light-dim);
+        --on-primary: #000;
+        --on-primary-dim: var(--on-primary);
+        --secondary: var(--secondary-light);
+        --on-secondary: #000;
+        --secondary-dim: #d1d5db;
+        --on-secondary-dim: #000;
+        --surface: #000;
+        --on-surface: #f3f4f5;
+        --on-surface-muted: #9ca3af;
+        --surface-dim: #1f2937;
+        --on-surface-dim: #f3f4f5;
+        --surface-container: #161921;
+        --on-surface-container: #f3f4f5;
+        --surface-dim-container: #1f2937;
+        --on-surface-dim-container: #f3f4f5;
+        --outline: #374151;
+        --outline-variant: #1f2937;
+        --success: #57fa65;
+        --on-success: #000;
+        --danger: #e35f5f;
+        --on-danger: #000;
+        --danger-dim: #b85c5c;
+        --on-danger-dim: #000;
+        --shade: rgba(128, 128, 128, 0.175);
+    }
+
+    html {
+        color-scheme: dark;
+    }
+}
+
+body {
+    font-family: "Gabarito", sans-serif;
+}
+
+.thin-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #9ca3af transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+    --thumb: #9ca3af;
+    background: var(--thumb);
+    border-radius: 0.2rem;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+    --thumb: #9ca3af;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}

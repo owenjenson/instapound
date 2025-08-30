@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instapound.Data", "Instapound.Data\Instapound.Data.csproj", "{B32DA69D-7563-46E5-BC8F-E6A0A4BD958F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instapound.Web", "Instapound.Web\Instapound.Web.csproj", "{FFCA969A-D911-4ECC-9CB5-A0F21827F907}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B32DA69D-7563-46E5-BC8F-E6A0A4BD958F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B32DA69D-7563-46E5-BC8F-E6A0A4BD958F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B32DA69D-7563-46E5-BC8F-E6A0A4BD958F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B32DA69D-7563-46E5-BC8F-E6A0A4BD958F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFCA969A-D911-4ECC-9CB5-A0F21827F907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFCA969A-D911-4ECC-9CB5-A0F21827F907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFCA969A-D911-4ECC-9CB5-A0F21827F907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFCA969A-D911-4ECC-9CB5-A0F21827F907}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F0C68E9-FFF1-47F2-A1EC-9612F3CFFCFD}
+	EndGlobalSection
+EndGlobal

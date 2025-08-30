@@ -1,0 +1,7 @@
+﻿@model Instapound.Web.Models.LikeButtonViewModel
+
+<button class="btn flex gap-2 text-sm ajax-btn"
+        data-id="@Model.Id"
+        data-url="@Model.Url">
+    @await Html.PartialAsync("_LikeButtonContent", new LikeButtonContentViewModel(Model.LikesCount, Model.CurrentUserLikes))
+</button>

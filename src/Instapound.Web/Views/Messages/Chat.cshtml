@@ -1,0 +1,37 @@
+﻿@model Instapound.Web.Models.ChatViewModel
+
+@{
+    ViewData["Title"] = $"{Model.User.Name} | Instapound";
+}
+
+<header class="mb-2">
+    <a class="flex gap-4 items-center w-fit group" asp-controller="Profile" asp-action="Index" asp-route-id="@Model.User.Id">
+        @{
+            var avatar = Model.User.Avatar is null ?
+                "/images/avatars/default_avatar.png" :
+                $"/images/avatars/{Model.User.Avatar}";
+        }
+
+        <img loading="lazy" class="cover aspect-square w-16 h-16 rounded-full p-1 border-2 border-primary" src="@avatar" />
+        <div>
+            <h2 class="font-semibold text-2xl group-hover:underline">@Model.User.Name</h2>
+            <small class="block text-on-surface-muted text-lg">@@@Model.User.UserName</small>
+        </div>
+    </a>
+</header>
+
+<ul id="messages-list" data-user-id="@Model.User.Id" class="flex-1 flex flex-col-reverse gap-4 justify-items-end py-4 h-full max-h-full overflow-auto -mx-5 px-5 thin-scrollbar">
+    @await Html.PartialAsync("_ChatMessages", Model.Messages)
+</ul>
+
+<div class="flex gap-3 py-2 bg-surface">
+    <textarea id="message-textarea" class="input flex-1" placeholder="Aa"></textarea>
+    <button id="send-button" class="btn btn-icon self-end">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 lucide lucide-send"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" /><path d="m21.854 2.147-10.94 10.939" /></svg>
+    </button>
+</div>
+
+@section Scripts {
+    <script src="~/js/signalr/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+}

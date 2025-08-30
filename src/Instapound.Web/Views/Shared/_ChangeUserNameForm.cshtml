@@ -1,0 +1,33 @@
+﻿@model Instapound.Web.Models.ChangeUserNameViewModel
+
+<form id="changeUserNameForm"
+      asp-controller="Profile"
+      asp-action="ChangeUserName"
+      class="max-w-md w-full"
+      method="post">
+    <div class="py-2 text-sm">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @if (Model.IsSuccess)
+        {
+            <div class="flex gap-1.5 items-center text-success">
+                <svg class="w-4 h-4 lucide lucide-circle-check" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg>
+                <span>Your username was changed successfully</span>
+            </div>
+        }
+    </div>
+
+    <div class="flex flex-col gap-4">
+        <div class="flex flex-col">
+            <label asp-for="UserName" class="mb-2"></label>
+            <input asp-for="UserName" class="input" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <div class="flex flex-col">
+            <label asp-for="Password" class="mb-2"></label>
+            <input asp-for="Password" class="input" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <button class="mt-2 btn btn-primary" type="submit">Change username</button>
+    </div>
+</form>

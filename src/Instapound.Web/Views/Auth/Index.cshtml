@@ -1,0 +1,35 @@
+﻿@model Instapound.Web.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login | Instapound";
+}
+
+<h2 class="text-3xl font-semibold mb-6">Login</h2>
+
+<form class="flex flex-col gap-4 max-w-md w-full" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="flex flex-col">
+        <label asp-for="UserName" class="mb-2"></label>
+        <input asp-for="UserName" class="input" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="flex flex-col">
+        <label asp-for="Password" class="mb-2"></label>
+        <input asp-for="Password" class="input" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="flex items-center gap-2">
+        <input class="accent-primary border border-outline" asp-for="RememberMe" />
+        <label asp-for="RememberMe">@Html.DisplayNameFor(m => m.RememberMe)</label>
+    </div>
+
+    <div class="flex gap-3 mt-3">
+        <button class="btn btn-primary" type="submit">Log in</button>
+        <a class="btn" asp-action="Register">Create profile</a>
+    </div>
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

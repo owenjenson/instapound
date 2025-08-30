@@ -1,0 +1,45 @@
+﻿@model Instapound.Web.Models.ChangeProfileInfoViewModel
+
+<form id="changeProfileInfoForm"
+      asp-controller="Profile"
+      asp-action="ChangeProfileInfo"
+      class="max-w-md w-full"
+      method="post">
+    <div class="py-2 text-sm">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @if (Model.IsSuccess)
+        {
+            <div class="flex gap-1.5 items-center text-success">
+                <svg class="w-4 h-4 lucide lucide-circle-check" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg>
+                <span>Your profile was updated successfully</span>
+            </div>
+        }
+    </div>
+
+    <div class="flex flex-col gap-4">
+        <div class="flex flex-col">
+            <label asp-for="FirstName" class="mb-2"></label>
+            <input asp-for="FirstName" class="input" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="flex flex-col">
+            <label asp-for="LastName" class="mb-2"></label>
+            <input asp-for="LastName" class="input" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+
+        <div class="flex flex-col">
+            <label asp-for="DateOfBirth" class="mb-2"></label>
+            <input asp-for="DateOfBirth" class="input" />
+            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+        </div>
+
+        <div class="flex flex-col">
+            <label asp-for="Bio" class="mb-2"></label>
+            <textarea asp-for="Bio" class="input"></textarea>
+            <span asp-validation-for="Bio" class="text-danger"></span>
+        </div>
+
+        <button class="mt-2 btn btn-primary" type="submit">Change profile info</button>
+    </div>
+</form>

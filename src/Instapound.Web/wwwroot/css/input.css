@@ -1,0 +1,19 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+    @apply flex items-center bg-surface-container hover:bg-surface-dim-container text-on-surface-container border border-outline rounded-lg px-2 py-1 w-fit;
+}
+
+.btn-primary {
+    @apply bg-primary hover:bg-primary-dim text-on-primary;
+}
+
+.btn-icon {
+    @apply aspect-square p-2;
+}
+
+.input {
+    @apply bg-surface-container border border-outline rounded-lg px-3 py-2;
+}

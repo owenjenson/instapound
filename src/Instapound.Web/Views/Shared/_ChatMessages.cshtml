@@ -1,0 +1,28 @@
+﻿@model List<ChatMessageViewModel>
+
+@foreach (var message in Model)
+{
+    var flexRow = message.SentByCurrentUser ? "flex-row-reverse" : "flex-row";
+    var bubbleAlignment = message.SentByCurrentUser ? "items-end" : "items-start";
+    var bubbleJustify = message.SentByCurrentUser ? "justify-end" : "justify-start";
+
+    <li class="chat-message flex gap-2 @flexRow" data-chat-message-time="@message.SentAt.ToBinary()">
+        @{
+            var avatar = message.SenderAvatar is null ?
+                "/images/avatars/default_avatar.png" :
+                $"/images/avatars/{message.SenderAvatar}";
+        }
+
+        <img class="cover aspect-square w-6 h-6 rounded-full self-end"
+             src="@avatar"
+             loading="lazy" />
+
+        <div class="flex flex-col @bubbleAlignment">
+            <small class="flex flex-wrap gap-x-3 text-on-surface-muted mb-1 @bubbleJustify">
+                <span class="font-semibold">@message.SenderName</span>
+                <span>@message.SentAt</span>
+            </small>
+            <p class="border border-outline bg-surface-container px-2.5 py-1 rounded-lg">@message.Text</p>
+        </div>
+    </li>
+}

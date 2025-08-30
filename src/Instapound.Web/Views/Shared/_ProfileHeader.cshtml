@@ -1,0 +1,60 @@
+﻿@using Instapound.Data.Entities
+@using Microsoft.AspNetCore.Identity
+@model Instapound.Web.Models.ProfileInfoViewModel
+@inject UserManager<User> userManager
+
+<header class="grid grid-cols-[auto_1fr] grid-rows-[auto_auto_auto] gap-y-5 sm:gap-y-0 gap-x-4 sm:gap-x-10 mb-10">
+    @{
+        var avatar = Model.Avatar is null ?
+            "/images/avatars/default_avatar.png" :
+            $"/images/avatars/{Model.Avatar}";
+    }
+
+    <img class="sm:row-span-3 cover aspect-square w-16 h-16 sm:w-32 sm:h-32 rounded-full p-1 border-2 border-primary" src="@avatar" />
+
+    <div class="col-start-2 self-center">
+        <h2 class="text-2xl sm:text-3xl font-semibold">@Model.Name</h2>
+        <small class="block text-on-surface-muted text-lg sm:mb-2">@@@Model.UserName</small>
+    </div>
+
+    <div class="col-span-2 sm:col-span-1">
+        <div class="flex gap-5 mb-4 font-semibold">
+            <a class="hover:underline" asp-controller="Profile" asp-action="Index" asp-route-id="@Model.Id">Posts (@Model.PostsCount)</a>
+            <a class="hover:underline" asp-controller="Profile" asp-action="Following" asp-route-id="@Model.Id">Following (@Model.FollowingCount)</a>
+            <a class="hover:underline" asp-controller="Profile" asp-action="Followers" asp-route-id="@Model.Id">Followers (@Model.FollowersCount)</a>
+        </div>
+
+        @if (Model.Bio is not null)
+        {
+            <p class="text-sm mb-4">@Model.Bio</p>
+        }
+    </div>
+
+    <div class="col-span-2 sm:col-start-2 sm:col-end-3 flex gap-2">
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            var user = await userManager.GetUserAsync(User);
+            var isCurrentUser = user is not null && user.Id == Model.Id;
+
+            if (isCurrentUser)
+            {
+                <form asp-controller="Auth" asp-action="Logout" method="post">
+                    <button class="btn text-sm" type="submit">Log out</button>
+                </form>
+
+                <a class="btn text-sm" asp-controller="Profile" asp-action="Edit">
+                    Edit profile
+                </a>
+            }
+            else
+            {
+                @await Html.PartialAsync("_FollowButton", new FollowButtonViewModel(Model.Id, Model.CurrentUserFollows))
+
+                <a class="btn flex gap-2 text-sm" asp-controller="Messages" asp-action="Chat" asp-route-id="@Model.Id">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+                    Message
+                </a>
+            }
+        }
+   </div>
+</header>

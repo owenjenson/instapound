@@ -1,0 +1,85 @@
+﻿@model Instapound.Web.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Create profile | Instapound";
+}
+
+<h2 class="text-3xl font-semibold mb-6">Create profile</h2>
+
+<form class="flex flex-col gap-4 max-w-md w-full" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="flex flex-col">
+        <label asp-for="UserName" class="mb-2"></label>
+        <input asp-for="UserName" class="input" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="flex flex-col">
+        <label asp-for="Password" class="mb-2"></label>
+        <input asp-for="Password" class="input" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="flex flex-col">
+        <label asp-for="ConfirmPassword" class="mb-2"></label>
+        <input asp-for="ConfirmPassword" class="input" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <div class="flex flex-col">
+        <label asp-for="FirstName" class="mb-2"></label>
+        <input asp-for="FirstName" class="input" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="flex flex-col">
+        <label asp-for="LastName" class="mb-2"></label>
+        <input asp-for="LastName" class="input" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div class="flex flex-col">
+        <label asp-for="DateOfBirth" class="mb-2"></label>
+        <input asp-for="DateOfBirth" class="input" />
+        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+    </div>
+
+    <div class="flex flex-col">
+        <label asp-for="Bio" class="mb-2"></label>
+        <textarea asp-for="Bio" class="input"></textarea>
+        <span asp-validation-for="Bio" class="text-danger"></span>
+    </div>
+
+    <div class="flex flex-col">
+        <label asp-for="Avatar" class="mb-2"></label>
+
+        <img id="image"
+             class="self-start cover aspect-square w-full h-full max-w-48 max-h-48 rounded-full p-1 border-2 border-primary mb-3"
+             style="display: none" />
+
+        <div class="flex gap-2">
+            <button id="removeImageButton"
+                    type="button"
+                    class="btn"
+                    style="display: none">
+                Remove
+            </button>
+            <input id="newImageInput"
+                   asp-for="Avatar"
+                   class="rounded-lg text-on-surface-muted file:bg-primary file:text-on-primary file:rounded-lg file:py-0.5 file:mr-3"
+                   type="file"
+                   accept="image/*" />
+        </div>
+
+        <span asp-validation-for="Avatar" class="text-danger"></span>
+    </div>
+
+    <div class="flex gap-3 mt-3">
+        <button class="btn btn-primary" type="submit">Create profile</button>
+        <a class="btn" asp-action="Index">Log in</a>
+    </div>
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script src="~/js/uploadImage.js" asp-append-version="true"></script>
+}

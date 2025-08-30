@@ -1,0 +1,94 @@
+﻿@model Instapound.Web.Models.EditProfileViewModel
+
+@{
+    ViewData["Title"] = "Edit profile | Instapound";
+}
+
+<h2 class="text-3xl font-semibold mb-6">Edit profile</h2>
+
+<div class="mb-8 flex gap-6 items-center">
+    @{
+        var avatar = Model.Avatar is null ?
+            "/images/avatars/default_avatar.png" :
+            $"/images/avatars/{Model.Avatar}";
+    }
+
+    <img class="cover aspect-square w-20 h-20 sm:w-32 sm:h-32 rounded-full p-1 border-2 border-primary" src="@avatar" />
+
+    <div class="flex flex-col gap-3 text-sm">
+        <button id="showUploadAvatarDialogButton" class="btn">Change profile picture</button>
+        <form asp-controller="Profile" asp-action="RemoveAvatar" method="post">
+            <button
+                class="btn"
+                type="submit"
+                data-confirm="Are you sure you want to remove your profile picture?">
+                <span class="text-danger">Remove profile picture</span>
+            </button>
+        </form>
+    </div>
+
+    @await Html.PartialAsync("_ChangeAvatarDialogForm", new UploadFileViewModel())
+</div>
+
+<h3 class="text-xl font-semibold">Profile info</h3>
+
+<div id="changeProfileInfoFormContainer" class="mb-8">
+    @await Html.PartialAsync("_ChangeProfileInfoForm", Model.ChangeProfileInfo)
+</div>
+
+<h3 class="text-xl font-semibold">Username</h3>
+
+<div id="changeUserNameFormContainer" class="mb-8">
+    @await Html.PartialAsync("_ChangeUserNameForm", Model.ChangeUserName)
+</div>
+
+<h3 class="text-xl font-semibold">Password</h3>
+
+<div id="changePasswordFormContainer">
+    @await Html.PartialAsync("_ChangePasswordForm", Model.ChangePassword)
+</div>
+
+@section Scripts {
+    <script>
+        const formContainerIdPairs = [
+            ['changeProfileInfoForm', 'changeProfileInfoFormContainer'],
+            ['changePasswordForm', 'changePasswordFormContainer'],
+            ['changeUserNameForm', 'changeUserNameFormContainer'],
+        ];
+
+        window.addEventListener('load', () => {
+            document.getElementById('showUploadAvatarDialogButton').onclick = () => {
+                document.getElementById('uploadAvatarDialog').showModal();
+            }
+
+            for (const [formId, containerId] of formContainerIdPairs) {
+                const form = document.getElementById(formId);
+                form.addEventListener('submit', createSubmitHandler(containerId, formId));
+            }
+        });
+
+        function createSubmitHandler(containerId, formId) {
+            async function onSubmit(e) {
+                e.preventDefault();
+
+                const formData = new FormData(e.currentTarget);
+
+                const response = await fetch(e.currentTarget.action, {
+                    method: 'POST',
+                    body: new URLSearchParams(formData),
+                });
+                const result = await response.text();
+
+                const container = document.getElementById(containerId);
+                container.innerHTML = result;
+
+                const form = document.getElementById(formId);
+                form.addEventListener('submit', onSubmit);
+            }
+
+            return onSubmit;
+        }
+    </script>
+
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
